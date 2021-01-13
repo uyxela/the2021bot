@@ -1,0 +1,24 @@
+{
+  "name": "the2021club-bot",
+  "version": "1.0.0",
+  "description": "Official Discord bot for The 2021 Club",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uyxela/the2021club-bot.git"
+  },
+  "author": "Alex Yu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uyxela/the2021club-bot/issues"
+  },
+  "homepage": "https://github.com/uyxela/the2021club-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
