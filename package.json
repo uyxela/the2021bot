@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uyxela/the2021club-bot.git"
+    "url": "git+https://github.com/uyxela/the2021bot.git"
   },
   "author": "Alex Yu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/uyxela/the2021club-bot/issues"
+    "url": "https://github.com/uyxela/the2021bot/issues"
   },
-  "homepage": "https://github.com/uyxela/the2021club-bot#readme",
+  "homepage": "https://github.com/uyxela/the2021bot#readme",
   "dependencies": {
     "discord.js": "^12.5.1"
   }
