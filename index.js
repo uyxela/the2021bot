@@ -32,6 +32,10 @@ client.on('message', message => {
       return message.reply('I can\'t execute that command inside DMs!');
   }
 
+  if (command.dmOnly && message.channel.type !== 'dm') {
+      return message.reply('I can only execute that command inside DMs!');
+  }
+
   if (command.permissions) {
       const authorPerms = message.channel.permissionsFor(message.author);
       if (!authorPerms || !authorPerms.has(command.permissions)) {
@@ -43,7 +47,7 @@ client.on('message', message => {
       let reply = `You didn't provide any arguments, ${message.author}!`;
 
       if (command.usage) {
-          reply += `\nThe proper usage would be: \`${prefix} ${command.name} ${command.usage}\``;
+          reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
       }
       return message.channel.send(reply);
   }
