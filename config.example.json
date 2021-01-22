@@ -1,4 +1,9 @@
 {
     "token": "your-token-here",
-    "prefix": "/2021bot"
+    "prefix": "$",
+    "database": {
+        "url": "cluster.mongodb.net/dbname",
+        "username": "username",
+        "password": "password"
+    }
 }
