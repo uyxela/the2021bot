@@ -26,8 +26,16 @@ module.exports = {
                                 data.push(`**Location:** ${res.location}`);
                                 data.push(`**Links:** ${res.links.join(", ")}`);
                                 data.push(`**Cohorts:** ${res.cohorts.join(", ")}`);
-                                data.push(`**Goals:** ${res.goals.join("\n")}`);
-    
+                                res.goals.forEach(goal => {
+                                    data.push(`  - **${goal.name}:** ${goal.description}`);
+                                    if (goal.type == 'Frequency') {
+                                        data.push(`     **Frequency:** ${goal.frequency.times} times per ${goal.frequency.per}`);
+                                    } else if (goal.type == 'Percentage') {
+                                        data.push(`     **Progress:** ${Math.round((goal.percentage.numerator/goal.percentage.denominator)*1000)/10}% completed`);
+                                    } else if (goal.type == 'Completion') {
+                                        data.push(`     **Status:** ${goal.completion ? "Completed!" : "Working on it"}`)
+                                    }
+                                });
                                 message.reply(data, { split: true })
                             } else {
                                 message.reply("The profile you asked for can't be found, it most likely hasn't been set up yet.");
@@ -53,7 +61,16 @@ module.exports = {
                             data.push(`**Location:** ${res.location}`);
                             data.push(`**Links:** ${res.links.join(", ")}`);
                             data.push(`**Cohorts:** ${res.cohorts.join(", ")}`);
-                            data.push(`**Goals:** ${res.goals.join("\n")}`);
+                            res.goals.forEach(goal => {
+                                data.push(`  - **${goal.name}:** ${goal.description}`);
+                                if (goal.type == 'Frequency') {
+                                    data.push(`     **Frequency:** ${goal.frequency.times} times per ${goal.frequency.per}`);
+                                } else if (goal.type == 'Percentage') {
+                                    data.push(`     **Progress:** ${Math.round((goal.percentage.numerator/goal.percentage.denominator)*1000)/10}% completed`);
+                                } else if (goal.type == 'Completion') {
+                                    data.push(`     **Status:** ${goal.completion ? "Completed!" : "Working on it"}`)
+                                }
+                            });
 
                             message.reply(data, { split: true });
                         } else {
@@ -79,7 +96,6 @@ module.exports = {
                             data.push(`**Location:** ${res.location}`);
                             data.push(`**Links:** ${res.links.join(", ")}`);
                             data.push(`**Cohorts:** ${res.cohorts.join(", ")}`);
-                            data.push(`**Goals:** ${res.goals.join("\n")}`);
                             data.push(`Would you like to edit it? (yes/no)`);
 
                             message.reply(data, { split: true });
@@ -186,6 +202,7 @@ module.exports = {
                                                                     res.save((err) => {
                                                                         if (err) {
                                                                             console.error(err);
+                                                                            message.channel.send(`Oh no, something went wrong!`);
                                                                         } else {
                                                                             message.channel.send(`Your profile was succesfully updated!`);
                                                                         }

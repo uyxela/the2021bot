@@ -14,7 +14,10 @@ const goalSchema = new mongoose.Schema({
     name: String,
     description: String,
     type: String,
-    frequency: Number,
+    frequency: {
+        times: Number,
+        per: String
+    },
     percentage: {
         numerator: Number,
         denominator: Number
