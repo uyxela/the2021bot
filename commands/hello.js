@@ -12,7 +12,7 @@ module.exports = {
         const id = message.author.id;
         User.findOne({ id: id }, (err, res) => {
             if (err) {
-                console.log(err)
+                console.error(err)
             } else {
                 if (res === null) { // User does not exist
                     let user = {
@@ -113,7 +113,7 @@ module.exports = {
                                                                         if (err) {
                                                                             console.error(err);
                                                                         } else {
-                                                                            console.log(res);
+                                                                            // console.log(res)
                                                                             message.channel.send(`Your profile was succesfully created!\nYou can now add your 2021 goals with the \`${prefix}goals\` or manage your profile with the \`${prefix}profile\`!\nUse \`${prefix}help\` to learn how to use a specific command.`);
                                                                         }
                                                                     })
