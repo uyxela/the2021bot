@@ -12,9 +12,10 @@ module.exports = {
         const id = message.author.id;
         User.findOne({ id: id }, (err, res) => {
             if (err) {
-                console.error(err)
+                console.error(err);
+                message.reply("Something went wrong!");
             } else {
-                if (res === null) { // User does not exist
+                if (res == null) { // User does not exist
                     let user = {
                         id: message.author.id,
                         name: "",
@@ -42,7 +43,7 @@ module.exports = {
                                 }).then(message => {
                                     message = message.first();
                                     user.name = message.content;
-                                    message.channel.send(`Hi ${user.name.split(" ")[0]}! Please tell me a little bit about yourself (~80 words)`);
+                                    message.channel.send(`Hi ${user.name.split(" ")[0]}! Please tell me a little bit about yourself`);
                                     message.channel.awaitMessages(m => m.author.id === message.author.id, {
                                         max: 1,
                                         time: 600000,
@@ -109,11 +110,10 @@ module.exports = {
                                                                 const messageContent = message.content.toLowerCase();
                                                                 if (messageContent == 'yes' || messageContent == 'y') {
                                                                     const userProfile = new User(user);
-                                                                    userProfile.save((err, res) => {
+                                                                    userProfile.save((err) => {
                                                                         if (err) {
                                                                             console.error(err);
                                                                         } else {
-                                                                            // console.log(res)
                                                                             message.channel.send(`Your profile was succesfully created!\nYou can now add your 2021 goals with the \`${prefix}goals\` or manage your profile with the \`${prefix}profile\`!\nUse \`${prefix}help\` to learn how to use a specific command.`);
                                                                         }
                                                                     })
